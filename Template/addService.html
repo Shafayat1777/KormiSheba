@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <style>
+        .signup {
+            text-decoration: none;
+            color: #5138EE;
+        }
+        
+        .btn-style {
+            background-color: #5138EE;
+            color: #ffffff;
+            font-weight: bold;
+            border-radius: 20px;
+        }
+        
+        .btn-style:hover {
+            border: 2px solid #5138EE;
+            background-color: #ffffff;
+            color: #5138EE;
+        }
+        
+        .main {
+            background-color: #DCDFFF;
+        }
+        
+        .white {
+            background-color: white;
+        }
+        
+        .title {
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            color: #5138EE;
+        }
+    </style>
+
+
+</head>
+
+<body class="main">
+    <div class="container p-5">
+        <div class="row align-items-center d-flex p-2 bd-highlight ustify-content-center">
+            <div class="col"></div>
+            <div class="col-6 white p-5">
+                <h1 class="text-center title"> SignUp</h1>
+                <form method="POST">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <!-- <label for="exampleInputEmail1" class="form-label">Email address</label> -->
+                        <!-- <input type="hidden" class="form-control" name="seller" value = "{{user.email}}"> -->
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputUsername" class="form-label">Title</label>
+                        <input type="text" class="form-control" name="title" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputUsername" class="form-label">Category</label>
+                        <input type="text" class="form-control" name="category" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputUsername" class="form-label">Description</label>
+                        <input type="text" class="form-control" name="description" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputUsername" class="form-label">Info Of Buyer</label>
+                        <input type="text" class="form-control" name="infoOfBuyer" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputUsername" class="form-label">Price</label>
+                        <input type="text" class="form-control" name="price" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputUsername" class="form-label">DeliveryTime</label>
+                        <input type="text" class="form-control" name="deliveryTime" required>
+                    </div>
+
+                    <label for="exampleInputUsername1" class="form-label"><b>Images:</b></label>
+                    <div class="media">
+                        <p></p>
+                        <img class="rounded-circle account-img" src="{{user.profile_pics.url}}" width="150" height="150">
+                        <br><br>{{form.images}}
+                    </div><br>
+                    <button type="submit" class="form-control btn-style"> Register</button> 
+                    
+
+                    {% for field in services_form %}
+                    
+                    <p>
+                        {% for error in field.errors %}
+                        <p style="color: red">{{ error }}</p>
+                        {% endfor %}
+                    </p>
+                    {% endfor %}
+                    {% if services_form.non_field_errors %}
+                    <div style="color: red">
+                        <p>{{services_form.non_field_errors}}</p>
+                    </div>
+
+                    {% endif %}
+                </form>
+
+
+            </div>
+            <div class="col"></div>
+        </div>
+
+    </div>
+</body>
+
+</html>
